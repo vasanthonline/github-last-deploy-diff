@@ -28,12 +28,12 @@ jobs:
       run: echo ${GITHUB_SHA} > ${{github.repository}}/last_successful_deploy.txt
 
     - uses: shallwefootball/s3-upload-action@master
-        name: Upload S3
-        id: S3
-        with:
-          aws_key_id: ${{ secrets.AWS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-          aws_bucket: ${{ secrets.AWS_BUCKET }}
-          source_dir: ${{github.repository}}
+      name: Upload S3
+      id: S3
+      with:
+        aws_key_id: ${{ secrets.AWS_KEY_ID }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
+        aws_bucket: ${{ secrets.AWS_BUCKET }}
+        source_dir: ${{github.repository}}
 
 
