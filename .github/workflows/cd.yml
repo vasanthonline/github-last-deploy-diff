@@ -21,11 +21,11 @@ jobs:
 
 
     - name: Create artifact directory
-      run: mkdir -p ${{github.repository}}
+      run: mkdir -p sample
 
     # push last successful commit hash to a artifact
     - name: Push last successful deploy commit hash to a artifact
-      run: echo ${GITHUB_SHA} > ${{github.repository}}/last_successful_deploy.txt
+      run: echo ${GITHUB_SHA} > sample/last_successful_deploy.txt
 
     - uses: shallwefootball/s3-upload-action@master
       name: Upload S3
@@ -34,6 +34,6 @@ jobs:
         aws_key_id: ${{ secrets.AWS_KEY_ID }}
         aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
         aws_bucket: ${{ secrets.AWS_BUCKET }}
-        source_dir: ${{github.repository}}
+        source_dir: sample
 
 
