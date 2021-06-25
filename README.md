@@ -4,7 +4,7 @@ Get the list of file names which are changed between last successful deploy and 
 
 ## Action inputs
 
-The following settings must be passed as environment variables as shown in the example. Sensitive information, especially `aws_key_id` and `aws_secret_access_key`, should be [set as encrypted secrets](https://help.github.com/en/articles/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables) — otherwise, they'll be public to anyone browsing your repository's source code
+The following settings must be passed as environment variables as shown in the example. Sensitive information, especially `aws_key_id` and `aws_secret_access_key`, should be [set as encrypted secrets](https://help.github.com/en/articles/virtual-environments-for-github-actions#creating-and-using-secrets-encrypted-variables) — otherwise, they'll be public to anyone browsing your repository's source code.
 
 | name                    | description                                                  |
 | ----------------------- | ------------------------------------------------------------ |
