@@ -18,22 +18,18 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-
-    - name: Create artifact directory
-      run: mkdir -p sample
+    
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
 
     # push last successful commit hash to a artifact
     - name: Push last successful deploy commit hash to a artifact
-      run: echo ${GITHUB_SHA} > sample/last_successful_deploy.txt
-
-    - uses: shallwefootball/s3-upload-action@master
-      name: Upload S3
-      id: S3
-      with:
-        aws_key_id: ${{ secrets.AWS_KEY_ID }}
-        aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
-        aws_bucket: ${{ secrets.AWS_BUCKET }}
-        source_dir: sample
-
+      run: echo ${GITHUB_SHA} > ./last_successful_deploy.txt
+    
+    - name: Upload Last successful commit hash to S3
+      run: aws s3 cp ./last_successful_deploy.txt s3://${{ secrets.AWS_BUCKET }}/last_successful_deploy.txt
 
