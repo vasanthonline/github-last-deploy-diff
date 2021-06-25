@@ -25,12 +25,6 @@ jobs:
     
     - name: Set last commit hash to ENV
       run: echo "GITHUB_LAST_SUCCESS_REF=$(cat ./last_successful_deploy.txt)" >> $GITHUB_ENV
-    
-    - name: echo
-      run: echo "git diff ${GITHUB_LAST_SUCCESS_REF} ${GITHUB_SHA}  --name-only"
-    
-    - name: echo
-      run: git log
       
     - name: Print files changed btw last successful deploy and current run
       run: git diff ${GITHUB_LAST_SUCCESS_REF} ${GITHUB_SHA}  --name-only
